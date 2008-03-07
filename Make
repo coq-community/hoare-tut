@@ -1,1 +1,6 @@
-hoarelogicsemantics.v partialhoarelogic.v totalhoarelogic.v hoarelogic.v exgcd.v
+-R . HOARE_LOGIC_TUTORIAL
+hoarelogicsemantics.v
+partialhoarelogic.v
+totalhoarelogic.v
+hoarelogic.v 
+exgcd.v
