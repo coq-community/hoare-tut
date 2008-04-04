@@ -1,4 +1,4 @@
--R . HOARE_LOGIC_TUTORIAL
+-R . HoareTut
 hoarelogicsemantics.v
 partialhoarelogic.v
 totalhoarelogic.v
