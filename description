@@ -21,3 +21,5 @@ Url: http://www-verimag.imag.fr/~boulme/HOARE_LOGIC_TUTORIAL/
 License: GNU LGPL
 Keywords: Hoare logic imperative program weakest-precondition reflection 
 Require:
+Category: Mathematics/Logic/See also
+Category: Computer Science/Semantics and Compilation/Semantics
