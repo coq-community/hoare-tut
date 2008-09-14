@@ -69,11 +69,6 @@ Proof.
  (** - case [exec_Iif] *)
  intros e cond p1 p2 e'.
  case (E.eval cond e); simpl; firstorder auto.
- (** - case [exec_Iseq] *)
- intros e p1 p2 e1 e2 H1 HR1 H2 HR2 post H.
- eapply (HR2 post).
- apply (HR1 (synt_wp p2 post)).
- auto.
 Qed.
 
 (** * Completeness
