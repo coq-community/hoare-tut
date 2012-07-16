@@ -9,6 +9,7 @@
  We refine here the approach of  #<a href=partialhoarelogic.html>#[partialhoarelogic]#</a>#.
 *)
 
+Global Set Asymmetric Patterns.
 Set Implicit Arguments.
 Require Export hoarelogicsemantics.
 

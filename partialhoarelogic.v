@@ -8,6 +8,7 @@
  introduced in #<a href=hoarelogicsemantics.html>#[hoarelogicsemantics]#</a>#.
 *)
 
+Global Set Asymmetric Patterns.
 Set Implicit Arguments.
 Require Export hoarelogicsemantics.
 
