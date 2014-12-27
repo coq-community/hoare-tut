@@ -12,7 +12,7 @@
 Global Set Asymmetric Patterns.
 Set Implicit Arguments.
 Require Export hoarelogicsemantics.
-
+Require Wf.
 
 Module TotalHoareLogic (HD: HoareLogicDefs).
 
@@ -21,7 +21,7 @@ Module HLD:=HD.
 
 Definition sem_wp := wp.
 
-Require Export Wf.
+Export Wf.
 
 (** * Syntactic definition of the weakest precondition.
 
