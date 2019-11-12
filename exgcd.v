@@ -1,7 +1,7 @@
 (** * The very classical example of GCD computation in Hoare logic.
 
- This file is part of the "Tutorial on Hoare Logic". 
- For an introduction to this Coq library, 
+ This file is part of the "Tutorial on Hoare Logic".
+ For an introduction to this Coq library,
  see README #or <a href=index.html>index.html</a>#.
 
  This file illustrates how to use the Hoare logic described in file
@@ -26,9 +26,9 @@ Module Example <: ExprLang.
 
 (** Here, I use only two global variables [VX] and [VY] of type [Z]
 (binary integers). *)
-Inductive ExVar: Type -> Type := 
-  VX: (ExVar Z) | 
-  VY: (ExVar Z). 
+Inductive ExVar: Type -> Type :=
+  VX: (ExVar Z) |
+  VY: (ExVar Z).
 
 Definition Var:=ExVar.
 
@@ -38,14 +38,14 @@ expressed in [upd] and [get] below. *)
 Definition Env:= (Z*Z)%type.
 
 Definition upd (A:Type): (ExVar A) -> A -> Env -> Env :=
- fun x => 
+ fun x =>
    match x in (ExVar A) return A -> Env -> Env with
    | VX => fun vx e => (vx,snd e)
    | VY => fun vy e => (fst e,vy)
    end.
 
 Definition get (A:Type): (ExVar A) -> Env -> A :=
- fun x => 
+ fun x =>
    match x in (ExVar A) return Env -> A with
    | VX => fun e => fst e
    | VY => fun e => snd e
@@ -54,7 +54,7 @@ Definition get (A:Type): (ExVar A) -> Env -> A :=
 (** I consider only two binary operators [PLUS] and [MINUS]. Their
 meaning is given by [eval_binOP] below *)
 Inductive binOP: Type := PLUS | MINUS.
- 
+
 Definition eval_binOP: binOP -> Z -> Z -> Z :=
  fun op => match op with
   | PLUS => Zplus
@@ -70,7 +70,7 @@ Definition eval_relOP: relOP -> Z -> Z -> bool :=
   | EQ => Zeq_bool
   | NEQ => Zneq_bool
   | LE => Zle_bool
- end. 
+ end.
 
 (** Here is the abstract syntax of expressions. The semantics is given
 by [eval] below *)
@@ -78,7 +78,7 @@ Inductive ExExpr: Type -> Type :=
  | const: forall (A:Type), A -> (ExExpr A)
  | binop: binOP -> (ExExpr Z) -> (ExExpr Z) -> (ExExpr Z)
  | relop: relOP -> (ExExpr Z) -> (ExExpr Z) -> (ExExpr bool)
- | getvar: forall (A:Type), (ExVar A) -> (ExExpr A). 
+ | getvar: forall (A:Type), (ExVar A) -> (ExExpr A).
 
 Definition Expr:= ExExpr.
 
@@ -106,7 +106,7 @@ Coercion relop: relOP >-> Funclass.
 Coercion get: ExVar >-> Funclass.
 
 (** ** A [gcd] computation in this language *)
-Definition gcd := 
+Definition gcd :=
   (Iwhile (NEQ VX VY)
           (Iif (LE VX VY)
                (Iset VY (MINUS VY VX))
@@ -128,31 +128,31 @@ Hint Resolve Zgcd_minus: zarith.
 relation *)
 Lemma Zneq_bool_false: forall x y, Zneq_bool x y=false -> x=y.
 Proof.
- intros x y H0; apply Zcompare_Eq_eq; generalize H0; clear H0; unfold Zneq_bool. case (x ?= y)%Z; auto; 
- try (intros; discriminate); auto. 
+ intros x y H0; apply Zcompare_Eq_eq; generalize H0; clear H0; unfold Zneq_bool. case (x ?= y)%Z; auto;
+ try (intros; discriminate); auto.
 Qed.
 
 Lemma Zneq_bool_true: forall x y, Zneq_bool x y=true -> x<>y.
 Proof.
  intros x y; unfold Zneq_bool.
  intros H H0; subst.
- rewrite Zcompare_refl in H.
+ rewrite Z.compare_refl in H.
  discriminate.
 Qed.
 
 Hint Resolve Zneq_bool_true Zneq_bool_false Zle_bool_imp_le Zis_gcd_intro: zarith.
 
 (** ** Partial correctness proof of [gcd] *)
-Lemma gcd_partial_proof: 
- forall x0 y0, (fun e => (VX e)=x0 /\ (VY e)=y0) 
+Lemma gcd_partial_proof:
+ forall x0 y0, (fun e => (VX e)=x0 /\ (VY e)=y0)
    |= gcd  {= fun e => (Zis_gcd x0 y0 (VX e)) =}.
 Proof.
- intros x0 y0. 
+ intros x0 y0.
  apply PHL.soundness.
  simpl.
  intros e; intuition subst.
- (** after PO generation, I provide the invariant and simplify the goal *) 
- constructor 1 with (x:=fun e'=> 
+ (** after PO generation, I provide the invariant and simplify the goal *)
+ constructor 1 with (x:=fun e'=>
   forall d, (Zis_gcd (VX e') (VY e') d)
               ->(Zis_gcd (VX e) (VY e) d)); simpl.
  intuition auto with zarith.
@@ -163,27 +163,27 @@ Qed.
 
 (** ** Total correctness proof of [gcd] *)
 
-Lemma gcd_total_proof: 
+Lemma gcd_total_proof:
  forall x0 y0, (fun e => (VX e)=x0 /\ (VY e)=y0 /\ x0 > 0 /\ y0 > 0)
   |= gcd  [= fun e => (Zis_gcd x0 y0 (VX e)) =].
 Proof.
- intros x0 y0. 
+ intros x0 y0.
  apply THL.soundness.
  simpl.
  intros e; intuition subst.
- (** after simplification, I provide the invariant and then the variant *) 
+ (** after simplification, I provide the invariant and then the variant *)
  constructor 1 with (x:=fun e' => (VX e') > 0 /\ (VY e') > 0 /\
   forall d, (Zis_gcd (VX e') (VY e') d)
               ->(Zis_gcd (VX e) (VY e) d)); simpl.
  constructor 1 with (x:=fun e1 e0 => Zwf 0 ((VX e1)+(VY e1)) ((VX e0)+(VY e0))).
- (** - proof that my variant is a well_founded relation *) 
+ (** - proof that my variant is a well_founded relation *)
  constructor 1.
  apply wf_inverse_image with (f:=fun e=>(VX e)+(VY e)).
  auto with datatypes.
  (** - other goals *)
   unfold Zwf; simpl; (intuition auto with zarith).
- (** -- invariant => postcondition 
-      --- gcd part like in partial correctness proof 
+ (** -- invariant => postcondition
+      --- gcd part like in partial correctness proof
  *)
   cutrewrite <- ((fst e')=(snd e')) in H5; auto with zarith.
   (** --- new VY in branch "then" is positive *)
@@ -201,16 +201,16 @@ Basic Hoare logic is not well-suited for reasoning about non-terminating program
 In total correctness, postconditions of non-terminating programs are not provable.
 In partial correctness, a non-terminating program satisfies any (unsatisfiable) postcondition.
 
-For example, in an informal "meaning", the program below enumerates all multiples of 3. But this meaning 
+For example, in an informal "meaning", the program below enumerates all multiples of 3. But this meaning
 can not be expressed here (even in partial correctness).
 *)
 
-Definition enum_3N := 
+Definition enum_3N :=
   (Iseq (Iset VX (const 0))
         (Iwhile (const true)
                 (Iset VX (PLUS VX (const 3))))).
 
-Lemma enum_3N_stupid: 
+Lemma enum_3N_stupid:
  (fun e => True) |= enum_3N  {= fun e => False =}.
 Proof.
  apply PHL.soundness.
@@ -222,6 +222,6 @@ Qed.
 
 (** "Tutorial on Hoare Logic" Library. Copyright 2007 Sylvain Boulme.
 
-This file is distributed under the terms of the 
- "GNU LESSER GENERAL PUBLIC LICENSE" version 3.  
+This file is distributed under the terms of the
+ "GNU LESSER GENERAL PUBLIC LICENSE" version 3.
 *)
