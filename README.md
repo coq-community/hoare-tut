@@ -46,6 +46,7 @@ here performed through Dijkstra's weakest-precondition calculus.
 git clone https://github.com/coq-community/hoare-tut
 cd hoare-tut
 make   # or make -j <number-of-cores-on-your-machine>
+make html # to build html documentation
 ```
 
 
@@ -87,6 +88,7 @@ of this development.  In particular, replaying proof of `gcd_partial_proof`
 and `gcd_total_proof` in file `exgcd.v` allows to see
 how Coq generates PO on a concrete example. To do so, you
 may first need to download the sources and then to compile them using `make`.
+Alternatively, you can browse the html documentation through your favorite web browser.
 In case of trouble, please contact me.
 
 To read the sources, you may follow this order:

@@ -33,3 +33,5 @@ nra.cache
 
 Makefile.coq
 Makefile.coq.conf
+
+html

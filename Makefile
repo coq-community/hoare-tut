@@ -3,12 +3,10 @@ all: Makefile.coq
 
 clean: Makefile.coq
 	+make -f Makefile.coq clean
-	rm -f Makefile.coq
+	rm -f Makefile.coq Makefile.coq.conf
 
-Makefile.coq: Make
+Makefile.coq:
 	$(COQBIN)coq_makefile -f _CoqProject -o Makefile.coq
-
-Make: ;
 
 %: Makefile.coq
 	+make -f Makefile.coq $@
