@@ -157,7 +157,7 @@ Proof.
               ->(Zis_gcd (VX e) (VY e) d)); simpl.
  intuition auto with zarith.
  (** - invariant => postcondition *)
- cutrewrite <- ((fst e')=(snd e')) in H; auto with zarith.
+ replace (snd e') with (fst e') in H; auto with zarith.
 Qed.
 
 
@@ -185,7 +185,7 @@ Proof.
  (** -- invariant => postcondition
       --- gcd part like in partial correctness proof
  *)
-  cutrewrite <- ((fst e')=(snd e')) in H5; auto with zarith.
+  replace (snd e') with (fst e') in H5; auto with zarith.
   (** --- new VY in branch "then" is positive *)
   cut ((fst e')<=(snd e')); auto with zarith.
   cut ((fst e')<>(snd e')); auto with zarith.
