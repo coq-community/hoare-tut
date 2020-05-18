@@ -16,7 +16,6 @@ Set Implicit Arguments.
 
 Require Import ZArith.
 Require Import Znumtheory.
-Require Import Bool.
 Require Import hoarelogic.
 Require Import Zwf.
 Require Import Wellfounded.

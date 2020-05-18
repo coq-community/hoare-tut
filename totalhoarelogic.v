@@ -12,7 +12,6 @@
 Global Set Asymmetric Patterns.
 Set Implicit Arguments.
 Require Export hoarelogicsemantics.
-Require Wf.
 
 Module TotalHoareLogic (HD: HoareLogicDefs).
 
