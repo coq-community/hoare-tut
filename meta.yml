@@ -1,6 +1,7 @@
 ---
 fullname: Tutorial on Hoare Logic
 shortname: hoare-tut
+namespace: HoareTut
 organization: coq-community
 community: true
 
@@ -46,6 +47,16 @@ categories:
 - name: Mathematics/Logic/See also
 - name: Computer Science/Semantics
 - name: Compilation/Semantics
+
+build: |
+  ## Build instructions
+
+  ``` shell
+  git clone https://github.com/coq-community/hoare-tut
+  cd hoare-tut
+  make   # or make -j <number-of-cores-on-your-machine>
+  make html # to build html documentation
+  ```
 
 documentation: |
   ## Aims of this library
