@@ -2,7 +2,7 @@
 
 [![Contributing][contributing-shield]][contributing-link]
 [![Code of Conduct][conduct-shield]][conduct-link]
-[![Gitter][gitter-shield]][gitter-link]
+[![Zulip][zulip-shield]][zulip-link]
 
 
 [contributing-shield]: https://img.shields.io/badge/contributions-welcome-%23f7931e.svg
@@ -11,8 +11,9 @@
 [conduct-shield]: https://img.shields.io/badge/%E2%9D%A4-code%20of%20conduct-%23f15a24.svg
 [conduct-link]: https://github.com/coq-community/manifesto/blob/master/CODE_OF_CONDUCT.md
 
-[gitter-shield]: https://img.shields.io/badge/chat-on%20gitter-%23c1272d.svg
-[gitter-link]: https://gitter.im/coq-community/Lobby
+[zulip-shield]: https://img.shields.io/badge/chat-on%20zulip-%23c1272d.svg
+[zulip-link]: https://coq.zulipchat.com/#narrow/stream/237663-coq-community-devs.20.26.20users
+
 
 
 Hoare logics are "program logics" suitable for reasoning about
@@ -29,7 +30,6 @@ obligations is reflected in Coq. Technically, the PO generation is
 here performed through Dijkstra's weakest-precondition calculus.
 
 
-
 ## Meta
 
 - Author(s):
@@ -38,7 +38,9 @@ here performed through Dijkstra's weakest-precondition calculus.
   - Kartik Singhal ([**@k4rtik**](https://github.com/k4rtik))
 - License: [GNU Lesser General Public License v3.0 or later](LICENSE)
 - Compatible Coq versions: 8.10 or later
-- Additional Coq dependencies: none
+- Additional dependencies: none
+- Coq namespace: `HoareTut`
+- Related publication(s): none
 
 ## Build instructions
 
