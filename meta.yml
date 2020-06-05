@@ -30,6 +30,8 @@ maintainers:
 - name: Kartik Singhal
   nickname: k4rtik
 
+opam-file-maintainer: kartiksinghal@gmail.com
+
 license:
   fullname: GNU Lesser General Public License v3.0 or later
   identifier: LGPL-3.0-or-later
