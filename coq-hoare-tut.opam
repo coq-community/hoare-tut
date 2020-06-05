@@ -1,4 +1,7 @@
 opam-version: "2.0"
+authors: [
+  "Sylvain Boulmé"
+]
 maintainer: "kartiksinghal@gmail.com"
 version: "v8.11.1"
 
@@ -26,7 +29,7 @@ here performed through Dijkstra's weakest-precondition calculus.
 build: [make "-j%{jobs}%" ]
 install: [make "install"]
 depends: [
-  "coq"
+  "coq" {>= "8.8"}
 ]
 
 tags: [
@@ -38,7 +41,4 @@ tags: [
   "keyword:weakest precondition"
   "keyword:reflection"
   "logpath:HoareTut"
-]
-authors: [
-  "Sylvain Boulmé"
 ]
