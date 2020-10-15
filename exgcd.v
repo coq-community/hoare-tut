@@ -19,6 +19,7 @@ Require Import Znumtheory.
 Require Import hoarelogic.
 Require Import Zwf.
 Require Import Wellfounded.
+Require Import Lia.
 
 (** * Implementation of the expression language *)
 Module Example <: ExprLang.
@@ -118,7 +119,7 @@ Proof.
   intros a b d H; case H; constructor; intuition (auto with zarith).
   replace b with (b-a+a)%Z.
   auto with zarith.
-  omega.
+  lia.
 Qed.
 
 Hint Resolve Zgcd_minus: zarith.
