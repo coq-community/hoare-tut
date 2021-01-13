@@ -62,7 +62,7 @@ Proof.
   induction p; simpl; firstorder eauto.
 Qed.
 
-Hint Resolve synt_wp_monotonic: hoare.
+Global Hint Resolve synt_wp_monotonic: hoare.
 
 (** Below, a little tactic to decompose a pair in hypothesis [H]
     by giving the name [n] to the first component. 
@@ -257,7 +257,7 @@ Inductive execn: nat -> E.Env -> ImpProg -> E.Env -> Prop :=
      (execn n e (Iif cond (Iseq p (Iwhile cond p)) Iskip) e')
         -> (execn (S n) e (Iwhile cond p) e').
 
-Hint Resolve execn_Iskip execn_Iset execn_Iif execn_Iseq execn_Iwhile: hoare.
+Global Hint Resolve execn_Iskip execn_Iset execn_Iif execn_Iseq execn_Iwhile: hoare.
 
 Lemma exec_execn: forall ei p ef,
   (exec ei p ef) -> (exists n, execn n ei p ef).
@@ -304,7 +304,7 @@ Proof.
     intuition.
     discriminate.
 Qed.
-Hint Resolve reduces_wf: hoare.
+Global Hint Resolve reduces_wf: hoare.
 
 (** * Completeness
 
@@ -343,7 +343,7 @@ Qed.
 
 (** * Combining the previous results with transitivity of [ |= ] *)
 
-Hint Resolve wp_complete wp_sound: hoare.
+Global Hint Resolve wp_complete wp_sound: hoare.
 
 Theorem soundness: forall pre p post, pre |= (synt_wp p post) -> pre |= p [=post=].
 Proof.

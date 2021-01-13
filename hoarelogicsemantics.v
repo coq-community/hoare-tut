@@ -140,7 +140,7 @@ Notation "p [= post =]" := (wp p post) (at level 70).
   These hints are used in the metatheoritical proofs of the logic.
 *)
 
-Hint Resolve exec_Iskip exec_Iset exec_Iif exec_Iseq exec_Iwhile: hoare.
+Global Hint Resolve exec_Iskip exec_Iset exec_Iif exec_Iseq exec_Iwhile: hoare.
 
 Parameter exec_Iif_true:
   forall e cond p1 p2 e', 
@@ -155,7 +155,7 @@ Parameter exec_Iif_false:
          -> (exec e (Iif cond p1 p2) e').
 
 
-Hint Resolve exec_Iif_true exec_Iif_false: hoare.
+Global Hint Resolve exec_Iif_true exec_Iif_false: hoare.
 
 End HoareLogicDefs.
 

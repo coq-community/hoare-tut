@@ -52,7 +52,7 @@ Proof.
   induction p; simpl; firstorder eauto with hoare.
 Qed.
 
-Hint Resolve synt_wp_monotonic: hoare.
+Global Hint Resolve synt_wp_monotonic: hoare.
 
 (** * Soundness
   
@@ -93,7 +93,7 @@ Qed.
 
 (** * Combining the previous results with transitivity of [ |= ] *)
 
-Hint Resolve wp_complete wp_sound: hoare.
+Global Hint Resolve wp_complete wp_sound: hoare.
 
 Theorem soundness: forall pre p post, pre |= (synt_wp p post) -> pre |= p {=post=}.
 Proof.

@@ -122,7 +122,7 @@ Proof.
   lia.
 Qed.
 
-Hint Resolve Zgcd_minus: zarith.
+Global Hint Resolve Zgcd_minus: zarith.
 
 (** Two other lemmas relating [Zneq_bool] function with inequality
 relation *)
@@ -140,7 +140,7 @@ Proof.
  discriminate.
 Qed.
 
-Hint Resolve Zneq_bool_true Zneq_bool_false Zle_bool_imp_le Zis_gcd_intro: zarith.
+Global Hint Resolve Zneq_bool_true Zneq_bool_false Zle_bool_imp_le Zis_gcd_intro: zarith.
 
 (** ** Partial correctness proof of [gcd] *)
 Lemma gcd_partial_proof:
@@ -189,10 +189,6 @@ Proof.
   (** --- new VY in branch "then" is positive *)
   cut ((fst e')<=(snd e')); auto with zarith.
   cut ((fst e')<>(snd e')); auto with zarith.
-  (** --- new VX in branch "else" is positive *)
-  cut (~(fst e')<=(snd e')); auto with zarith.
-  intros X; rewrite (Zle_imp_le_bool _ _ X) in H4.
-  discriminate.
 Qed.
 
 (** ** Another example: infinite loops in partial correctness.
