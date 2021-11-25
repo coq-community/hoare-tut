@@ -92,7 +92,7 @@ end.
 
 End Example.
 
-(** * Instantiation of the Hoare logic on this langage. *)
+(** * Instantiation of the Hoare logic on this language. *)
 Module HL :=  HoareLogic(Example).
 Import HL.
 Import Example.
